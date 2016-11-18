@@ -1,2 +1,19 @@
 # format-name
+
+[![npm package](https://badge.fury.io/js/format-name.svg)](https://www.npmjs.org/package/format-name)
+[![Dependency Status](https://david-dm.org/opensource-cards/format-name.svg)](https://david-dm.org/opensource-cards/format-name)
+[![devDependency Status](https://david-dm.org/opensource-cards/format-name/dev-status.svg)](https://david-dm.org/opensource-cards/format-name#info=devDependencies)
+
 Make correct first/last name combination among different languages including preference.
+
+### Installation
+
+Using [npm](https://www.npmjs.com/):
+
+```
+npm install format-name --save
+```
+
+### License
+
+MIT
