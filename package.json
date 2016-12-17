@@ -1,6 +1,6 @@
 {
   "name": "format-name",
-  "version": "0.0.1-rc.0",
+  "version": "0.0.1-rc.1",
   "description": "Make correct first/last name combination among different languages including preference.",
   "author": {
     "name": "Rostyslav Khanas",
