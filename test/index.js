@@ -1,6 +1,5 @@
 import assert from 'assert';
-import formatName from '../src';
-import { FIRST_LAST, LAST_FIRST } from '../src';
+import formatName, { FIRST_LAST, LAST_FIRST } from '../src';
 
 const runTest = (inputFirstName, inputLastName, inputSortOrder, expectedResult) => {
   const formattedName = formatName(inputFirstName, inputLastName, inputSortOrder);
