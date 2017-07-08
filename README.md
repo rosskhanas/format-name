@@ -8,10 +8,8 @@ Make correct first/last name combination among different languages including pre
 
 ### Installation
 
-Using [npm](https://www.npmjs.com/):
-
 ```
-npm install format-name --save
+yarn add format-name
 ```
 
 ### License
