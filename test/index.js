@@ -10,6 +10,7 @@ describe('full names', () => {
   it('english, no sorting', () => runTest('Ross', 'Khanas', undefined, 'Ross Khanas'));
   it('english, first name, last name', () => runTest('Ross', 'Khanas', FIRST_LAST, 'Ross Khanas'));
   it('english, last name, first name', () => runTest('Ross', 'Khanas', LAST_FIRST, 'Khanas Ross'));
+  it('english, first name, no trim', () => runTest(' Ross ', undefined, undefined, 'Ross'));
   it('chinese, no sorting', () => runTest('台綸', '曾', undefined, '曾台綸'));
   it('chinese, first name, last name', () => runTest('台綸', '曾', FIRST_LAST, '曾台綸'));
   it('chinese, last name, first name', () => runTest('台綸', '曾', LAST_FIRST, '曾台綸'));
