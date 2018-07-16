@@ -7,38 +7,51 @@ const CJK_REGEX = /[⺀-\u2efe\u3000-〾\u3040-ゞ゠-ヾ㇀-\u31eeㇰ-ㇾ㈀-�
 export const FIRST_LAST = 1;
 export const LAST_FIRST = 2;
 
-function isValidString(value) {
+function isStringValid(value) {
   return typeof value === 'string' && value.length;
 }
 
-export default (firstName, lastName, sortOrder = FIRST_LAST) => {
-  // if some of values are not defined
-  const isFirstNameValid = isValidString(firstName);
-  const isLastNameValid = isValidString(lastName);
-  if (isFirstNameValid) {
-    if (!isLastNameValid) {
-      return trim(firstName);
-    }
-  } else {
-    if (isLastNameValid) {
-      return trim(lastName);
-    }
+export function isCJKFullName(name, surname) {
+  const nameTrimmed = trim(name);
+  const surnameTrimmed = trim(surname);
+  const isNameValid = isStringValid(name);
+  const isSurnameValid = isStringValid(surname);
+  if (!isNameValid || !isSurnameValid) {
+    return false;
+  }
+  const endOfNameIsCJK = CJK_REGEX.test(nameTrimmed[nameTrimmed.length - 1]);
+  const beginOfSurnameIsCJK = CJK_REGEX.test(surnameTrimmed[0]);
+  if (beginOfSurnameIsCJK || endOfNameIsCJK) {
+    return true;
+  }
+  return false;
+}
+
+export default (name, surname, sortOrder = FIRST_LAST) => {
+  const nameTrimmed = trim(name);
+  const surnameTrimmed = trim(surname);
+  // Some of names are not defined.
+  const isNameValid = isStringValid(name);
+  const isSurnameValid = isStringValid(surname);
+  if (isNameValid && !isSurnameValid) {
+    return nameTrimmed;
+  }
+  if (!isNameValid && isSurnameValid) {
+    return surnameTrimmed;
+  }
+  if (!isNameValid && !isSurnameValid) {
     return '';
   }
-
-  // both values are defined
-  const endOfFirstNameIsCJK = CJK_REGEX.test(firstName[firstName.length - 1]);
-  const beginOfLastNameIsCJK = CJK_REGEX.test(lastName[0]);
-  if (endOfFirstNameIsCJK) {
-    if (beginOfLastNameIsCJK) {
-      return trim(lastName) + trim(firstName);
-    }
-    return firstName + lastName;
+  // Both name and surnames are defined.
+  const endOfNameIsCJK = CJK_REGEX.test(nameTrimmed[nameTrimmed.length - 1]);
+  const beginOfSurnameIsCJK = CJK_REGEX.test(surnameTrimmed[0]);
+  if (beginOfSurnameIsCJK) {
+    return surnameTrimmed + nameTrimmed;
   }
-  if (beginOfLastNameIsCJK) {
-    return trim(lastName) + trim(firstName);
+  if (endOfNameIsCJK) {
+    return nameTrimmed + surnameTrimmed;
   }
   return sortOrder === FIRST_LAST
-    ? `${trim(firstName)} ${trim(lastName)}`
-    : `${trim(lastName)} ${trim(firstName)}`;
+    ? `${nameTrimmed} ${surnameTrimmed}`
+    : `${surnameTrimmed} ${nameTrimmed}`;
 };
