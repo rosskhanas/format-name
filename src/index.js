@@ -12,13 +12,13 @@ function isStringValid(value) {
 }
 
 export function isCJKFullName(name, surname) {
-  const nameTrimmed = trim(name);
-  const surnameTrimmed = trim(surname);
   const isNameValid = isStringValid(name);
   const isSurnameValid = isStringValid(surname);
   if (!isNameValid || !isSurnameValid) {
     return false;
   }
+  const nameTrimmed = trim(name);
+  const surnameTrimmed = trim(surname);
   const endOfNameIsCJK = CJK_REGEX.test(nameTrimmed[nameTrimmed.length - 1]);
   const beginOfSurnameIsCJK = CJK_REGEX.test(surnameTrimmed[0]);
   if (beginOfSurnameIsCJK || endOfNameIsCJK) {
