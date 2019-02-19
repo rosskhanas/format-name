@@ -18,7 +18,7 @@
     "demo:deploy": "gh-pages -d demo/build",
     "clean": "rimraf lib",
     "lint": "eslint src",
-    "test": "mocha --recursive --compilers js:babel-core/register",
+    "test": "mocha --recursive --require babel-core/register",
     "build": "npm run lint && npm test && npm run clean && babel src --out-dir lib"
   },
   "license": "MIT",
