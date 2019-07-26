@@ -1,6 +1,6 @@
 {
   "name": "format-name",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Make correct first/last name combination among different languages including preference.",
   "keywords": [
     "format",
@@ -30,9 +30,6 @@
     "lib"
   ],
   "main": "lib/index.js",
-  "dependencies": {
-    "lodash": "^4.17.15"
-  },
   "devDependencies": {
     "babel": "^6.3.26",
     "babel-cli": "^6.26.0",
