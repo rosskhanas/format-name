@@ -1,7 +1,7 @@
 {
   "name": "format-name",
   "version": "0.0.4",
-  "description": "Make correct first/last name combination among different languages including preference.",
+  "description": "Make correct first/last name combination among different languages.",
   "keywords": [
     "format",
     "first",
