@@ -15,15 +15,11 @@ yarn add format-name
 ### The Gist
 
 ```javascript
-import formatName, { FIRST_LAST, LAST_FIRST } from 'format-name';
+import formatName from "format-name";
 
-// Different depending on a config.
-formatName('Ross', 'Khanas', FIRST_LAST); // Ross Khanas
-formatName('Ross', 'Khanas', LAST_FIRST); // Khanas Ross
+formatName("Ross", "Khanas"); // Ross Khanas
 
-// Last name is always first.
-formatName('台綸', '曾', FIRST_LAST); // 曾台綸
-formatName('台綸', '曾', LAST_FIRST); // 曾台綸
+formatName("台綸", "曾"); // 曾台綸
 ```
 
 ### License
