@@ -17,11 +17,11 @@ yarn add format-name
 ```javascript
 import formatName, { FIRST_LAST, LAST_FIRST } from 'format-name';
 
-// different depending on a config
+// Different depending on a config.
 formatName('Ross', 'Khanas', FIRST_LAST); // Ross Khanas
 formatName('Ross', 'Khanas', LAST_FIRST); // Khanas Ross
 
-// last name is always first
+// Last name is always first.
 formatName('台綸', '曾', FIRST_LAST); // 曾台綸
 formatName('台綸', '曾', LAST_FIRST); // 曾台綸
 ```

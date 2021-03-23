@@ -1,7 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb/base",
-  "rules": {},
+  "extends": ["airbnb/base", "prettier", "prettier/prettier"],
   "env": {
     "mocha": true
   }

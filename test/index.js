@@ -1,41 +1,32 @@
-import assert from 'assert';
-import formatName, { FIRST_LAST, LAST_FIRST, isCJKFullName } from '../src';
+import { expect } from "chai";
+import formatName, { isCJKFullName } from "../src";
 
-const runTest = (inputFirstName, inputLastName, inputSortOrder, expectedResult) => {
-  const formattedName = formatName(inputFirstName, inputLastName, inputSortOrder);
-  assert.equal(formattedName, expectedResult);
-};
-
-describe('formatName', () => {
-  describe('full names', () => {
-    it('english, no sorting', () => runTest('Ross', 'Khanas', undefined, 'Ross Khanas'));
-    it('english, first name, last name', () => runTest('Ross', 'Khanas', FIRST_LAST, 'Ross Khanas'));
-    it('english, last name, first name', () => runTest('Ross', 'Khanas', LAST_FIRST, 'Khanas Ross'));
-    it('english, first name, no trim', () => runTest(' Ross ', undefined, undefined, 'Ross'));
-    it('chinese, no sorting', () => runTest('台綸', '曾', undefined, '曾台綸'));
-    it('chinese, first name, last name', () => runTest('台綸', '曾', FIRST_LAST, '曾台綸'));
-    it('chinese, last name, first name', () => runTest('台綸', '曾', LAST_FIRST, '曾台綸'));
-    it('hiragana, no sorting', () => runTest('そうすけ', 'さがら', undefined, 'さがらそうすけ'));
-    it('hiragana, first name, last name', () => runTest('そうすけ', 'さがら', FIRST_LAST, 'さがらそうすけ'));
-    it('hiragana, last name, first name', () => runTest('そうすけ', 'さがら', LAST_FIRST, 'さがらそうすけ'));
-  });
-  describe('full names', () => {
-    it('english, first name and undefined', () => runTest('Ross', undefined, undefined, 'Ross'));
-    it('english, first name and empty', () => runTest('Ross', '', undefined, 'Ross'));
-    it('english, first name and object', () => runTest('Ross', {}, undefined, 'Ross'));
-    it('english, last name and undefined', () => runTest(undefined, 'Khanas', undefined, 'Khanas'));
-    it('english, last name and empty', () => runTest('', 'Khanas', undefined, 'Khanas'));
-    it('english, last name and object', () => runTest({}, 'Khanas', undefined, 'Khanas'));
-    it('invalid, object and object', () => runTest({}, {}, undefined, ''));
-    it('invalid, object and empty', () => runTest({}, '', undefined, ''));
-    it('invalid, empty and object', () => runTest('', {}, undefined, ''));
-    it('invalid, empty and empty', () => runTest('', '', undefined, ''));
+describe("formatName", () => {
+  describe("full names", () => {
+    it("english, no sorting", () => expect(formatName("Ross", "Khanas")).to.be.equal("Ross Khanas"));
+    it("english, first name, no trim", () => expect(formatName(" Ross ", undefined)).to.be.equal("Ross"));
+    it("english, first name and undefined", () => expect(formatName("Ross", undefined)).to.be.equal("Ross"));
+    it("english, first name and empty", () => expect(formatName("Ross", "")).to.be.equal("Ross"));
+    it("english, first name and object", () => expect(formatName("Ross", {})).to.be.equal("Ross"));
+    it("english, last name and undefined", () => expect(formatName(undefined, "Khanas")).to.be.equal("Khanas"));
+    it("english, last name and empty", () => expect(formatName("", "Khanas")).to.be.equal("Khanas"));
+    it("english, last name and object", () => expect(formatName({}, "Khanas")).to.be.equal("Khanas"));
+    it("chinese, no sorting", () => expect(formatName("台綸", "曾")).to.be.equal("曾台綸"));
+    it("chinese, first name, last name", () => expect(formatName("台綸", undefined)).to.be.equal("台綸"));
+    it("chinese, last name, first name", () => expect(formatName(undefined, "曾")).to.be.equal("曾"));
+    it("hiragana, no sorting", () => expect(formatName("そうすけ", "さがら")).to.be.equal("さがらそうすけ"));
+    it("hiragana, first name, last name", () => expect(formatName("そうすけ", undefined)).to.be.equal("そうすけ"));
+    it("hiragana, last name, first name", () => expect(formatName(undefined, "さがら")).to.be.equal("さがら"));
+    it("invalid, object and object", () => expect(formatName({}, {})).to.be.equal(""));
+    it("invalid, object and empty", () => expect(formatName({}, "")).to.be.equal(""));
+    it("invalid, empty and object", () => expect(formatName("", {})).to.be.equal(""));
+    it("invalid, empty and empty", () => expect(formatName("", "")).to.be.equal(""));
   });
 });
 
-describe('isCJKFullName', () => {
-  it('english', () => assert.equal(isCJKFullName('Ross', 'Khanas'), false));
-  it('english, first name, no trim', () => assert.equal(isCJKFullName(' Ross ', undefined), false));
-  it('chinese', () => assert.equal(isCJKFullName('台綸', '曾'), true));
-  it('hiragana', () => assert.equal(isCJKFullName('そうすけ', 'さがら'), true));
+describe("isCJKFullName", () => {
+  it("english", () => expect(isCJKFullName("Ross", "Khanas")).to.be.false);
+  it("english, first name, no trim", () => expect(isCJKFullName(" Ross ", undefined)).to.be.false);
+  it("chinese", () => expect(isCJKFullName("台綸", "曾")).to.be.true);
+  it("hiragana", () => expect(isCJKFullName("そうすけ", "さがら")).to.be.true);
 });
