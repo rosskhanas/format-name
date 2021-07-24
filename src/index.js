@@ -8,7 +8,7 @@ function isStringAndNotEmpty(value) {
   return isString(value) && value.length;
 }
 
-export function isCJKFullName(firstName, lastName) {
+function isCJKFullName(firstName, lastName) {
   const isFirstNameValid = isStringAndNotEmpty(firstName);
   const isLastNameValid = isStringAndNotEmpty(lastName);
   if (!isFirstNameValid || !isLastNameValid) {
@@ -50,4 +50,5 @@ const formatName = (firstName, lastName) => {
   return `${firstNameTrimmed} ${lastNameTrimmed}`;
 };
 
-export default formatName;
+module.exports = formatName;
+module.exports.isCJKFullName = isCJKFullName;
