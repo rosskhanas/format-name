@@ -23,6 +23,7 @@ describe("formatName", () => {
     it("invalid, object and empty", () => assert.equal(formatName({}, ""), ""));
     it("invalid, empty and object", () => assert.equal(formatName("", {}), ""));
     it("invalid, empty and empty", () => assert.equal(formatName("", ""), ""));
+    it("invalid, undefined and undefined", () => assert.equal(formatName(undefined,undefined), ''));
   });
 });
 
